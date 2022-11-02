@@ -205,7 +205,7 @@ def moderatorGUI(teKeurenBericht, keurBerichtFunctie):
     moderatorOverviewFrame.pack(pady=(70, 0))
 
     # voeg een titel label toe aan de frame
-    titelLabel = tk.Label(moderatorOverviewFrame, text="Bericht om te keuren:", pady=20, padx=100, bg=_kleuren["Achtergrond"], fg=_kleuren["nsBlauw"], font=(
+    titelLabel = tk.Label(moderatorOverviewFrame, text="Bericht om te keuren:", pady=20, padx=150, bg=_kleuren["Achtergrond"], fg=_kleuren["nsBlauw"], font=(
         "Helvetica", 18, "bold"))  # titel
     titelLabel.grid(pady=(0, 20), row=0, column=0, columnspan=2)
 
