@@ -1,5 +1,5 @@
 # Wouter Missler, 2022
-# Haalt input van gebruiker en stuurt het door naar een csv bestand, om zo gemodereerd te worden.
+# Haalt input van gebruiker en stuurt het door naar de database, om zo gemodereerd te worden.
 
 # Importeren van de benodigde modules
 import random
@@ -30,8 +30,8 @@ def stuurBericht(naam, bericht):
     tijdStr = str(now.strftime("%H:%M:%S"))
 
     # voeg de input toe aan de database
-    sql.insertQuery(
-        "INSERT INTO bericht (naam,bericht,datum,tijd,station) VALUES (%s, %s, %s, %s, %s)", (naam, bericht, datumStr, tijdStr, huidigStation))
+    sql.commitQuery(
+        "INSERT INTO bericht (naam,bericht,datum,tijd,station,goedgekeurd,moderator) VALUES (%s, %s, %s, %s, %s,%s,%s)", (naam, bericht, datumStr, tijdStr, huidigStation, "0", "1"))
 
     # laat een popup zien dat het bericht is verstuurd
     gui.clearGUI()

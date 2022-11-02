@@ -31,7 +31,7 @@ def fetchQuery(query, parameters=None):
     return records
 
 
-def insertQuery(query, parameters=None):
+def commitQuery(query, parameters=None):
     '''
     Voert een query uit op de database om data toe te voegen
 
