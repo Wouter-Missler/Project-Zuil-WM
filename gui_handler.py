@@ -8,7 +8,8 @@ _kleuren = {
     "nsGeel": "#FFC917",
     "nsBlauw": "#003082",
     "Error": "#DE2044",
-    "Achtergrond": "#FFFFFF"
+    "Achtergrond": "#FFFFFF",
+    "AchtergrondDonker": "#ECECEC"
 }
 
 # GUI basis
@@ -229,3 +230,110 @@ def moderatorGUI(teKeurenBericht, keurBerichtFunctie):
     afKeurenButton.grid(row=3, column=1, pady=20)
 
     root.mainloop()
+
+
+def stationsSelectieGUI(stations, selecteerStationFunctie):
+    '''Zorgt voor de GUI voor het selecteren van een station waar het stationsscherm zal hangen'''
+
+    # set de titel
+    root.title("NS - Stationsselectie")
+
+    # roep de boilerplate GUI aan
+    clearGUI()
+
+    # maak een frame aan
+    stationsSelectieFrame = tk.Frame(
+        root, bg=_kleuren["nsGeel"], padx=0, pady=0, height=300)
+    stationsSelectieFrame.pack(pady=(70, 0))
+
+    # voeg een titel label toe aan de frame
+    titelLabel = tk.Label(stationsSelectieFrame, text="Selecteer een station:", pady=20, padx=100, bg=_kleuren["Achtergrond"], fg=_kleuren["nsBlauw"], font=(
+        "Helvetica", 18, "bold"))
+    titelLabel.grid(pady=(0, 20), row=0, column=0, columnspan=2)
+
+    # voeg een optionmenu toe aan de frame met daarin alle stations
+    stationString = tk.StringVar()
+    stationString.set(stations[0])
+    stationMenu = tk.OptionMenu(
+        stationsSelectieFrame, stationString, *stations)
+    stationMenu.config(bg=_kleuren["nsBlauw"], fg=_kleuren["Achtergrond"], font=(
+        "Helvetica", 15), relief=tk.GROOVE)
+    stationMenu.grid(row=1, column=0, columnspan=2, pady=20)
+
+    # voeg een knop toe aan de frame om het station te selecteren
+    selecteerButton = tk.Button(stationsSelectieFrame, text="Selecteer", bg=_kleuren["nsBlauw"], fg=_kleuren["Achtergrond"], font=("Helvetica", 15), relief=tk.GROOVE,
+                                command=lambda: selecteerStationFunctie(eval(stationString.get())[0]))
+    selecteerButton.grid(row=2, column=0, columnspan=2, pady=20)
+
+    root.mainloop()
+
+
+def stationsschermGUI(station, laatsteBerichten, lokaleTemp, faciliteiten):
+    '''Zorgt voor de GUI voor het stationscherm waarin de 5 meest recente gemodereerde berichten worden weergegeven'''
+
+    # set de titel
+    root.title("NS - Stationscherm {}".format(station))
+
+    # roep de boilerplate GUI aan
+    clearGUI()
+
+    # maak een label aan waarin de lokale temperatuur wordt weergegeven
+    lokaleTempLabel = tk.Label(root, text="Lokale temperatuur: " + str(lokaleTemp) + "°C", pady=20, padx=100, bg=_kleuren["Achtergrond"], fg=_kleuren["nsBlauw"], font=(
+        "Helvetica", 18, "bold"))
+    lokaleTempLabel.pack(pady=(0, 0), fill=tk.X)
+
+    # maak een frame aan met 5 kolommen
+    stationschermFrame = tk.Frame(
+        root, bg=_kleuren["nsBlauw"], padx=0, pady=0, height=300)
+    stationschermFrame.pack(pady=(20, 0))
+
+    # maak een loop waarin we door de laatste berichten gaan, dit hoeft niet 5 te zijn
+    for i in range(len(laatsteBerichten)):
+        huidigBericht = laatsteBerichten[i]  # pak het huidige bericht
+
+        # maak een frame aan
+        berichtFrame = tk.Frame(
+            stationschermFrame, bg=_kleuren["nsGeel"], padx=0, pady=0, height=300, width=178)
+        berichtFrame.grid(row=0, column=i, padx=10, sticky="N")
+
+        # voeg een titel label toe aan de frame
+        titelLabel = tk.Label(berichtFrame, text="{}:".format(huidigBericht[4]), pady=10, width=14, bg=_kleuren["Achtergrond"], fg=_kleuren["nsBlauw"], font=(
+            "Helvetica", 15, "bold"))  # titel
+        titelLabel.pack()
+
+        # voeg een label toe met de stationsnaam van het bericht
+        stationLabel = tk.Label(berichtFrame, text="Station: "+huidigBericht[5], pady=8, width=14, bg=_kleuren["AchtergrondDonker"], fg=_kleuren["nsBlauw"], font=(
+            "Helvetica", 10, "bold"))  # station
+        stationLabel.pack(fill=tk.X)
+
+        # voeg een label toe aan de frame met daarin de tekst van het bericht
+        berichtText = tk.Label(berichtFrame, text=huidigBericht[1], pady=10, width=14, wraplength=120, bg=_kleuren["nsGeel"], fg=_kleuren["nsBlauw"], font=(
+            "Helvetica", 10))  # bericht
+        berichtText.pack()
+
+        # voeg een label toe aan de frame met faciliteiten:
+        faciliteitenLabel = tk.Label(berichtFrame, text="Faciliteiten: ", pady=8, width=14, anchor='w', bg=_kleuren["nsGeel"], fg=_kleuren["nsBlauw"], font=(
+            "Helvetica", 10, "bold"))  # faciliteiten
+        faciliteitenLabel.pack(fill=tk.X, padx=10)
+
+        # voeg een frame toe waarin de faciliteiten worden weergegeven
+        faciliteitenFrame = tk.Frame(
+            berichtFrame, bg=_kleuren["nsGeel"], padx=10, pady=0, height=100)
+        faciliteitenFrame.pack(fill=tk.X)
+
+        # maak een loop waarin we door de faciliteiten van het bericht gaan
+        for faciliteitKey in faciliteiten[i]:
+            # pak de faciliteit boolean
+            faciliteit = faciliteiten[i][faciliteitKey]
+
+            if (faciliteit):
+                print("{}: {}".format(faciliteitKey, faciliteit))
+                # maak een label aan met de faciliteit
+                faciliteitImg = tk.PhotoImage(
+                    file="./assets/img_{}.png".format(faciliteitKey))
+                # resize de image to fit in 15x15
+                faciliteitImg = faciliteitImg.subsample(4, 4)
+                faciliteitLabel = tk.Label(
+                    faciliteitenFrame, image=faciliteitImg, width=32, height=32)
+                faciliteitLabel.image = faciliteitImg
+                faciliteitLabel.pack(side=tk.LEFT, padx=2, pady=8)

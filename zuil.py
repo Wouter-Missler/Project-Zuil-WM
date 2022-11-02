@@ -24,6 +24,11 @@ def stuurBericht(naam, bericht):
     Returns: None
     '''
 
+    # verifieer of het bericht binnen de limiet van 140 karakters valt
+    if len(bericht) > 140:
+        gui.errorGUI("Het bericht mag niet langer zijn dan 140 karakters.")
+        return
+
     # haal de huidige tijd en datum op
     now = datetime.now()
     datumStr = str(now.strftime("%d-%m-%Y"))
