@@ -11,13 +11,19 @@ _kleuren = {
     "Achtergrond": "#FFFFFF",
     "AchtergrondDonker": "#ECECEC"
 }
+global root
 
-# GUI basis
-root = tk.Tk()  # initialiseer tkinter
-root.title("NS")  # placeholder titel
-root.geometry("1000x650")  # zet de grootte van de GUI vast
-root.resizable(0, 0)  # zorgt ervoor dat de window niet geresized kan worden
-root.configure(bg=_kleuren["nsBlauw"])  # achtergrondkleur van de GUI
+
+def initGUI():
+    '''Zorgt voor de basis van de GUI'''
+
+    global root
+
+    root = tk.Tk()  # initialiseer tkinter
+    root.title("NS")  # placeholder titel
+    root.geometry("1000x650")  # zet de grootte van de GUI vast
+    root.resizable(0, 0)  # maak de GUI niet resizable
+    root.configure(bg=_kleuren["nsBlauw"])  # achtergrondkleur van de GUI
 
 
 def clearGUI():

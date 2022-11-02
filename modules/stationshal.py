@@ -8,8 +8,8 @@ import requests
 import math
 
 # Importeren van de project modules
-import gui_handler as gui
-import sql_handler as sql
+import handlers.gui_handler as gui
+import handlers.sql_handler as sql
 
 # globale variabelen
 apiKey = "ea483d18a21474f2752841755af5f59c"
@@ -79,9 +79,14 @@ def selecteerStation(stad):
     gui.stationsschermGUI(stad, berichten, temperatuur, faciliteiten)
 
 
-# haal alle stations op
-query = "SELECT naam FROM station"
-records = sql.fetchQuery(query)
+def start():
+    '''Start het stationshal scherm'''
 
-# laat de gebruiker een station kiezen waar het stationsscherm zal worden geopend
-gui.stationsSelectieGUI(records, selecteerStation)
+    # haal alle stations op
+    query = "SELECT naam FROM station"
+    records = sql.fetchQuery(query)
+
+    gui.initGUI()  # initialiseer de GUI
+
+    # laat de gebruiker een station kiezen waar het stationsscherm zal worden geopend
+    gui.stationsSelectieGUI(records, selecteerStation)

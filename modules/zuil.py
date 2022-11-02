@@ -6,8 +6,8 @@ import random
 from datetime import datetime
 
 # Importeren van de project modules
-import sql_handler as sql
-import gui_handler as gui
+from handlers import sql_handler as sql
+from handlers import gui_handler as gui
 
 # globale variabelen
 alleStations = sql.fetchQuery("SELECT naam FROM station")  # alle stations
@@ -44,22 +44,9 @@ def stuurBericht(naam, bericht):
                  "Uw bericht is verstuurd naar het moderatie-team van " + huidigStation + "." + " Uw bericht wordt zo spoedig mogelijk bekeken.")
 
 
-gui.zuilGUI(huidigStation, stuurBericht)  # start de GUI
+def start():
+    '''Start het zuil scherm waar een bericht ingevuld kan worden'''
 
-# -----------------------------------------------------------------
-#                          test code
-# -----------------------------------------------------------------
+    gui.initGUI()  # initialiseer de GUI
 
-# simpele query test die alle berichteninfo ophaalt en als een tabel print
-# query = "SELECT * FROM bericht"
-# # parameters = ["Gouda"]
-# records = sql.fetchQuery(query)
-
-# print("{0:15} | {1:15} | {2:15} | {3:15} | {4:15} | {5:15}".format(
-#     "Nummer", "Bericht", "Datum", "Tijd", "Naam", "Station"))
-# print("----------------------------------------------------------------------------------------------------------------------------------")
-
-# for record in records:
-#     # print(record)
-#     print("{0:15} | {1:15} | {2:15} | {3:15} | {4:15} | {5:15}".format(
-#         record[0], record[1], str(record[2]), str(record[3]), record[4], record[5]))
+    gui.zuilGUI(huidigStation, stuurBericht)  # start de GUI

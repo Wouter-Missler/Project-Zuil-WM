@@ -6,8 +6,8 @@
 
 
 # Importeren van de project modules
-import gui_handler as gui
-import sql_handler as sql
+import handlers.gui_handler as gui
+import handlers.sql_handler as sql
 
 # globale variabelen
 huidigModeratorNummer = 0
@@ -113,4 +113,9 @@ def updateBericht(berichtNummer, goedgekeurd):
                      "Er zijn geen berichten meer om te modereren. Bedankt voor het modereren!")
 
 
-gui.moderatorLoginGUI(loginFunctie)
+def start():
+    '''Start het moderatie scherm'''
+
+    gui.initGUI()  # initialiseer de GUI
+
+    gui.moderatorLoginGUI(loginFunctie)
