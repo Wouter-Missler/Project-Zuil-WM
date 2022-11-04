@@ -36,7 +36,7 @@ def stuurBericht(naam, bericht):
 
     # voeg de input toe aan de database
     sql.commitQuery(
-        "INSERT INTO bericht (naam,bericht,datum,tijd,station,goedgekeurd,moderator) VALUES (%s, %s, %s, %s, %s,%s,%s)", (naam, bericht, datumStr, tijdStr, huidigStation, "0", "1"))
+        "INSERT INTO bericht (naam,bericht,datum,tijd,station,goedgekeurd,moderator) VALUES (%s, %s, %s, %s, %s,%s,%s)", (naam.strip(), bericht.strip(), datumStr, tijdStr, huidigStation, "0", "1"))
 
     # laat een popup zien dat het bericht is verstuurd
     gui.clearGUI()

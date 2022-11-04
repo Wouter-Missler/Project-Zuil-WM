@@ -14,7 +14,7 @@ def main():
 
     # vraag welk bestand er moet worden uitgevoerd
     choice = input(
-        "Kies een optie: \n1. Stationshal \n2. Moderatie \n3. Stationszuil \n")
+        "Kies een optie: \n1. Stationshal (berichten bekijken) \n2. Moderatie (berichten modereren) \n3. Stationszuil (berichten inzenden) \n")
 
     # voer het gekozen bestand uit
     if choice == "1":
