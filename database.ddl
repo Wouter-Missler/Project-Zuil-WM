@@ -1,3 +1,4 @@
+/* tabel voor verschillende stations */
 CREATE TABLE station (
 	naam varchar(50) NOT NULL, 
 	land varchar(2) NOT NULL,
@@ -9,6 +10,7 @@ CREATE TABLE station (
 	PRIMARY KEY (naam)
 );
 
+/* tabel voor moderatoren */
 CREATE TABLE moderator (
 	moderatorNummer serial NOT NULL,
 	wachtwoord varchar(255) NOT NULL,
@@ -18,6 +20,7 @@ CREATE TABLE moderator (
 	PRIMARY KEY (moderatorNummer)
 );
 
+/* tabel voor berichten */
 CREATE TABLE bericht (
 	berichtNummer serial NOT NULL,
 	bericht varchar(255) NOT NULL,
@@ -30,6 +33,7 @@ CREATE TABLE bericht (
 	FOREIGN KEY (station) REFERENCES station(naam)
 )
 
+/* station inserts */
 INSERT INTO station (
     stad, land, ovFiets, lift, wc, parkerenPlusRijden)
 VALUES
@@ -73,3 +77,9 @@ VALUES
     ('Zaandam', 'NL', false, true, false, true),
     ('Zwolle', 'NL', true, false, true, false),
     ('Zutphen', 'NL', false, true, false, true);
+
+/* moderator insert */
+INSERT INTO moderator (
+	naam, email, wachtwoord)
+VALUES
+	('Wouter Missler', 'woutermissler.missler@student.hu.nl', '1234')
