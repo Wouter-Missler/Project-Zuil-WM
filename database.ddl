@@ -31,11 +31,11 @@ CREATE TABLE bericht (
 	
 	PRIMARY KEY (berichtNummer),
 	FOREIGN KEY (station) REFERENCES station(naam)
-)
+);
 
 /* station inserts */
 INSERT INTO station (
-    stad, land, ovFiets, lift, wc, parkerenPlusRijden)
+    naam, land, ovFiets, lift, wc, parkerenPlusRijden)
 VALUES
     ('Arnhem', 'NL', true, false, true, false),
     ('Almere', 'NL', false, true, false, true),
@@ -82,4 +82,4 @@ VALUES
 INSERT INTO moderator (
 	naam, email, wachtwoord)
 VALUES
-	('Wouter Missler', 'woutermissler.missler@student.hu.nl', '1234')
+	('Wouter Missler', 'woutermissler.missler@student.hu.nl', '1234');
