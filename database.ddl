@@ -28,9 +28,15 @@ CREATE TABLE bericht (
 	tijd time NOT NULL,
 	naam varchar(255) DEFAULT 'Anoniem',
 	station varchar(50) NOT NULL,
+
+    goedgekeurd boolean,
+    moderator serial,
+    beoordelingsdatum date,
+    beoordelingstijd time,
 	
 	PRIMARY KEY (berichtNummer),
-	FOREIGN KEY (station) REFERENCES station(naam)
+	FOREIGN KEY (station) REFERENCES station(naam),
+    FOREIGN KEY (moderator) REFERENCES moderator(moderatorNummer)
 );
 
 /* station inserts */
