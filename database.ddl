@@ -23,7 +23,7 @@ CREATE TABLE moderator (
 /* tabel voor berichten */
 CREATE TABLE bericht (
 	berichtNummer serial NOT NULL,
-	bericht varchar(255) NOT NULL,
+	bericht varchar(140) NOT NULL,
 	datum date NOT NULL,
 	tijd time NOT NULL,
 	naam varchar(255) DEFAULT 'Anoniem',
