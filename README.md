@@ -1,6 +1,6 @@
 # Project Zuil Blok A
-Wouter Missler
+© Wouter Missler 2022
 
 ---
 
-![Github meme](https://res.cloudinary.com/practicaldev/image/fetch/s--NUSRQ-3J--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://i.redd.it/5iphhycu0io11.png)
+Alle code voor het project zuil is hier aanwezig. Zie het kopje Ontwerp in het projectverslag om toelichtingen te zien op de bestanden en de structuur.
