@@ -29,6 +29,15 @@ def stuurBericht(naam, bericht):
         gui.errorGUI("Het bericht mag niet langer zijn dan 140 karakters.")
         return
 
+    # als er geen naam is ingevuld, geef de reiziger de naam Anoniem
+    if (naam == ""):
+        naam = "Anoniem"
+
+    # als het bericht leeg is, geef een error en return
+    if (bericht == ""):
+        gui.errorGUI("Het bericht mag niet leeg zijn.")
+        return
+
     # haal de huidige tijd en datum op
     now = datetime.now()
     datumStr = str(now.strftime("%d-%m-%Y"))
